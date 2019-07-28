@@ -29,7 +29,24 @@ switch (catchACase) {
 // Venue location
 // Date of the Event (use moment to format this as "MM/DD/YYYY")
 function concertThis() {
-    console.log("This works!");
+    var axios = require("axios");
+
+    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+    .then(
+        function(response) {
+            // Then we print out the imdbRating
+            console.log(response.venue.name);
+            console.log(response.venue.region);
+            console.log(response.datetime);
+        }
+        .catch(function(error) {
+            if (error.response) {
+                console.log(error.venue.name);
+                console.log(error.venue.region);
+                console.log(error.datetime);
+            }
+        })
+    );
 }
 
 
@@ -42,18 +59,19 @@ function spotifyThisSong() {
     var Spotify = require('node-spotify-api');
 
     // You should then be able to access your keys information like so
-    var spotify = new Spotify(keys.spotify);
+    var spotify = new Spotify(keys);
 
-    spotify.search({ type: 'track', query: 'I Want It That Way' }, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        }
-        console.log(data); 
+    spotify
+    .search({ type: 'track', query: 'I Want It That Way' })
+    .then(function(response) {
+        console.log(response);
+    })
+    .catch(function(err) {
+        console.log(err);
     });
 }
 
 
- 
 // Title of the movie.
 // Year the movie came out.
 // IMDB Rating of the movie.
@@ -107,7 +125,7 @@ function doWhatItSays() {
         return console.log(err);
     }
     // Break the string down by comma separation and store the contents into the output array.
-    var output = data.split(",");
+    var output = data.split(", ");
   
     // Loop Through the newly created output array
     for (var i = 0; i < output.length; i++) {
