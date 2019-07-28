@@ -37,7 +37,7 @@ function concertThis() {
             // Then we print out the imdbRating
             console.log(response.venue.name);
             console.log(response.venue.region);
-            console.log(response.datetime);
+            console.log(response.datetime(moment().format(MM/DD/YYYY)));
         }
         .catch(function(error) {
             if (error.response) {
