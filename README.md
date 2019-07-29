@@ -25,24 +25,24 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
 2. Next, you choose a case that you want to do.
 
 - First Case, we are going to type in concert-this<br>
-node liri.js concert-this (bandname) <br>
+```node liri.js concert-this (bandname)``` <br>
 Output: It will show the Venue, Name of Venue, and Date of Venue
-![concert-this](./pictures/default-case.png)
+![concert-this](./pictures/concert-this.png)
 
 - Second Case, we are going to type in spotify-this-song<br>
-node liri.js spotify-this-song (songname) <br>
+```node liri.js spotify-this-song (songname)``` <br>
 Ouput: It will show the Artist, Song Name, the Album of the song it's on
 ![spotify-this-song](./pictures/spotify-this-song1.png)
 ![spotify-this-song](./pictures/spotify-this-song2.png)
 ![spotify-this-song](./pictures/spotify-this-song3.png)
 
 - Next Case, we are going to type in movie-this<br>
-node liri.js movie-this (bandname) <br>
+```node liri.js movie-this (bandname)``` <br>
 Output: It will show the Title, Year, IMDB Rating, Country, Language, Plot of the movie
 ![movie-this](./pictures/movie-this.png)
 
 - Fourth Case, we are going to type in do-what-it-says<br>
-node liri.js do-what-it-says (bandname) <br>
+```node liri.js do-what-it-says (bandname)``` <br>
 Output: It will show the what's in the randam.text file
 ![do-what-it-says](./pictures/do-what-it-says1.png)
 ![do-what-it-says](./pictures/do-what-it-says2.png)

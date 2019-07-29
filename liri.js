@@ -4,6 +4,7 @@ require("dotenv").config();
 // Add the code required to import the `keys.js` file and store it in a variable.
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
+var moment = require('moment') 
 // Varialbes that equals an argument
 var catchACase = process.argv[2];
 var value = process.argv[3];
@@ -40,9 +41,9 @@ function concertThis() {
         .get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
         .then(function (response) {
             // console.log(response.data)
-            console.log(response.data.venue.name);
-            console.log(response.data.venue.region);
-            console.log(response.data.datetime(moment().format(MM/DD/YYYY)));
+            console.log(response.data[0].venue.name);
+            console.log(response.data[0].venue.region);
+            console.log((moment(response.data[0].datetime).format("MM/DD/YYYY")));
         })
         .catch(function (error) {
             if (error) {
