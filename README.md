@@ -2,13 +2,13 @@
 
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
-Comman Line:
+Command Line:
 * concert-this
 * spotify-this-son
 * movie-this
 * do-what-it-says
 
-#Purpose of Liri
+# Purpose of Liri
 
 LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for movies.
 
@@ -20,27 +20,38 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
 * [Moment](https://www.npmjs.com/package/moment)
 * [DotEnv](https://www.npmjs.com/package/dotenv)
 
-#How To Use Liri
+# How To Use Liri
 1. First step is you Open Bash in the Liri-node-app.
 2. Next, you choose a case that you want to do.
 
--First we are going to type in concert-this case
-~~node liri.js concert-this (bandname)~~
-Format: ![concert-this](url)
+- First Case, we are going to type in concert-this<br>
+node liri.js concert-this (bandname)
+Output: It will show the Venue, Name of Venue, and Date of Venue
+Format: ![concert-this](./pictures/default-case.png)
 
-~~node liri.js spotify-this-song (songname)~~
-Format: ![spotify-this-song](url)
+- Second Case, we are going to type in spotify-this-song<br>
+node liri.js spotify-this-song (songname)
+Ouput: It will show the Artist, Song Name, the Album of the song it's on
+Format: ![spotify-this-song](./pictures/spotify-this-song1.png)
+Format: ![spotify-this-song](./pictures/spotify-this-song2.png)
+Format: ![spotify-this-song](./pictures/spotify-this-song3.png)
 
-~~node liri.js movie-this (bandname)~~
-Format: ![movie-this](url)
+- Next Case, we are going to type in movie-this<br>
+node liri.js movie-this (bandname)
+Output: It will show the Title, Year, IMDB Rating, Country, Language, Plot of the movie
+Format: ![movie-this](./pictures/movie-this.png)
 
-~~node liri.js do-what-it-says (bandname)~~
-Format: ![do-what-it-says](url)
+- Fourth Case, we are going to type in do-what-it-says<br>
+node liri.js do-what-it-says (bandname)
+Output: It will show the what's in the randam.text file
+Format: ![do-what-it-says](./pictures/do-what-it-says1.png)
+Format: ![do-what-it-says](./pictures/do-what-it-says2.png)
+Format: ![do-what-it-says](./pictures/do-what-it-says3.png)
 
-~~node liri.js concert-tis (bandname)~~
+node liri.js concert-tis (bandname)
 Format: ![default](./pictures/default-case.png)
 
-#Files Used
+# Files Used
 - .env
 - .gitignore
 - keys.js (Spotify keys)
@@ -49,3 +60,5 @@ Format: ![default](./pictures/default-case.png)
 - package-lock.json
 - random.txt
 
+# Creator of App
+Israel Harvin 7/29/2019
