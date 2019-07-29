@@ -3,25 +3,30 @@ require("dotenv").config();
 
 // Add the code required to import the `keys.js` file and store it in a variable.
 var keys = require("./keys.js");
-
+var Spotify = require('node-spotify-api');
 // Varialbes that equals an argument
 var catchACase = process.argv[2];
 var value = process.argv[3];
+category()
 
 // Switch Statement so JavaScript knows which case
-switch (catchACase) {
-    case "concert-this":
-    concertThis()
-    break;
-    case "spotify-this-song":
-    spotifyThisSong()
-    break;
-    case "movie-this":
-    movieThis()
-    break;
-    case "do-what-it-says":
-    doWhatItSays()
-    break;        
+function category() {
+    switch (catchACase) {
+        case "concert-this":
+            concertThis()
+            break;
+        case "spotify-this-song":
+            spotifyThisSong()
+            break;
+        case "movie-this":
+            movieThis()
+            break;
+        case "do-what-it-says":
+            doWhatItSays()
+            break;
+        default:
+            console.log("Choose a case")
+    }
 }
 
 // "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`
@@ -30,24 +35,22 @@ switch (catchACase) {
 // Date of the Event (use moment to format this as "MM/DD/YYYY")
 function concertThis() {
     var axios = require("axios");
-
-    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
-    .then(
-        function(response) {
-            // Then we print out the imdbRating
-            console.log(response.venue.name);
-            console.log(response.venue.region);
-            console.log(response.datetime(moment().format(MM/DD/YYYY)));
-        }
-        .catch(function(error) {
-            if (error.response) {
-                console.log(error.venue.name);
-                console.log(error.venue.region);
-                console.log(error.datetime);
+    console.log("this works")
+    axios
+        .get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
+        .then(function (response) {
+            // console.log(response.data)
+            console.log(response.data.venue.name);
+            console.log(response.data.venue.region);
+            console.log(response.data.datetime(moment().format(MM/DD/YYYY)));
+        })
+        .catch(function (error) {
+            if (error) {
+                console.log(error);
             }
         })
-    );
 }
+
 
 
 // `node liri.js spotify-this-song '<song name here>'`
@@ -56,19 +59,15 @@ function concertThis() {
 // A preview link of the song from Spotify
 // The album that the song is from
 function spotifyThisSong() {
-    var Spotify = require('node-spotify-api');
-
-    // You should then be able to access your keys information like so
-    var spotify = new Spotify(keys);
-
+    var spotify = new Spotify(keys.spotify);
     spotify
-    .search({ type: 'track', query: 'I Want It That Way' })
-    .then(function(response) {
-        console.log(response);
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+        .search({ type: 'track', query: value })
+        .then(function (response) {
+            console.log(response.tracks.items[0]);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
 
 
@@ -85,32 +84,24 @@ function movieThis() {
     // Basic Node application for requesting data from the OMDB website via axios
     // Here we incorporate the "axios" npm package
     var axios = require("axios");
-    
+
     // // We then run the request with axios module on a URL with a JSON
-    axios.get("http://www.omdbapi.com/?apikey=2e268f65&t=" + value)
-    .then(
-        function(response) {
-            // Then we print out the imdbRating
-            console.log(response.title);
-            console.log(response.year);
-            console.log(response.ratings.imdbRating);
-            console.log(response.country);
-            console.log(response.language);
-            console.log(response.plot);
-            console.log(response.actors);
-        }
-        .catch(function(error) {
-            if (error.response) {
-                console.log(error.response.title);
-                console.log(error.response.year);
-                console.log(error.response.ratings.imdbRating);
-                console.log(error.response.country);
-                console.log(error.response.language);
-                console.log(error.response.plot);
-                console.log(error.response.actors);
-            }
-        })
-    );
+    axios.get("http://www.omdbapi.com/?apikey=2e268f65&y=&plot=full&t=" + value)
+        .then(
+            function (response) {
+                // console.log(response.data)
+                // Then we print out the imdbRating
+                console.log("The movie title is: " + response.data.Title);
+                console.log("The movie year is: " + response.data.Year);
+                console.log("The movie IMDB Rating is: " + response.data.Ratings.imdbRating);
+                console.log("The movie was made in: " + response.data.Country);
+                console.log("The movie language was made in: " + response.data.Language);
+                console.log(response.data.Plot);
+                console.log("The people who acted in this movie: " + response.data.Actors);
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 
@@ -120,20 +111,20 @@ function doWhatItSays() {
 
     // Running the readFile module that's inside of fs.
     // Stores the read information into the variable "data"
-    fs.readFile("random.txt", text, function(err, data) {
+    fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) {
-        return console.log(err);
+            return console.log(err);
+        }
+        // Break the string down by comma separation and store the contents into the output array.
+        console.log(data);
+        var output = data.split(",");
+        catchACase = output[0]
+        value = output[1]
+        category()
+        console.log(value, catchACase)
     }
-    // Break the string down by comma separation and store the contents into the output array.
-    var output = data.split(", ");
-  
-    // Loop Through the newly created output array
-    for (var i = 0; i < output.length; i++) {
-  
-      // Print each element (item) of the array/
-      console.log(output[i]);
-    }
-  });
+    )
 }
+
 
 
